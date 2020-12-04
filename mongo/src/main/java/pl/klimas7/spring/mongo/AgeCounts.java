@@ -1,0 +1,6 @@
+package pl.klimas7.spring.mongo;
+
+public class AgeCounts {
+//    private Integer age;
+//    private Integer count;
+}
