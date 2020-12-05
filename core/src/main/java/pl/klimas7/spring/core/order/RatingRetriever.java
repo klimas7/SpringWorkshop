@@ -14,7 +14,7 @@ public class RatingRetriever {
 
     @PostConstruct
     public void printRating() {
-        log.info("Rating: " + rating);
+        log.info("Rating: " + rating.getRating());
     }
 
     //DefaultListableBeanFactory.getBeanNamesForType --> this.allBeanNamesByType Tutaj jest zgodnie z alfabetem
