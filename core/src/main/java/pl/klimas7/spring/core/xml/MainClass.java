@@ -1,13 +1,33 @@
 package pl.klimas7.spring.core.xml;
 
+import lombok.extern.java.Log;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+@Log
 public class MainClass {
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
     }
 
     public static void main(String[] args) {
-       HelloWorld helloWorld = new HelloWorld("test");
-       helloWorld.print();
+        ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+        //! FileSystemXmlApplicationContext
+        log.info("After creating context");
+
+        //DefaultListableBeanFactory
+
+        log.info("Before getBean");
+        //getBean -> DefaultListableBeanFactory -> DefaultSingletonBeanRegistry
+        HelloWorld helloWorld = (HelloWorld) context.getBean("helloWorld");
+        helloWorld.print();
+
+        helloWorld.setMessage("test");
+        helloWorld.print();
+
+        log.info("//-----------------");
+        var helloWorld2 = (HelloWorld) context.getBean("helloWorld");
+        helloWorld2.print();
     }
 }
 
