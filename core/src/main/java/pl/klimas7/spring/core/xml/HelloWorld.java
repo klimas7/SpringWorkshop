@@ -2,7 +2,6 @@ package pl.klimas7.spring.core.xml;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 
 @AllArgsConstructor
@@ -13,6 +12,10 @@ public class HelloWorld {
 
     public HelloWorld() {
         log.info("In constructor");
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public void print() {
