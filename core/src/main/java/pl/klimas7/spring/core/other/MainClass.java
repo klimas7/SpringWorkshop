@@ -2,6 +2,9 @@ package pl.klimas7.spring.core.other;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+
+import java.util.Arrays;
 
 @Slf4j
 public class MainClass {
@@ -11,7 +14,9 @@ public class MainClass {
 
     public static void main(String[] args) {
         log.info("---------------------");
-        SpringApplication.run(AppConfiguration.class, args);
+        ApplicationContext context = SpringApplication.run(AppConfiguration.class, args);
+        log.info("Bean definition count: " + context.getBeanDefinitionCount());
+        Arrays.asList(context.getBeanDefinitionNames()).forEach(log::info);
         log.info("---------------------");
     }
 }
