@@ -4,6 +4,7 @@ import lombok.extern.java.Log;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
 @Log
@@ -28,6 +29,7 @@ public class SpringConfig {
     }
 
     @Bean
+    @Lazy
     public Worker bestWorker() {
         log.info("In BestWorker");
         return new HardWorker();
