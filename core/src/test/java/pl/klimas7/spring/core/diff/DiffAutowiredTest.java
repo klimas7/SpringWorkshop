@@ -18,6 +18,9 @@ public class DiffAutowiredTest {
     @Qualifier("triangle")
     private Shape square;
 
+    @Autowired(required = false)
+    private Empty empty;
+
     @Test
     public void startContextTest() {
 //        log.info(shape.description());
