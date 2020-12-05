@@ -2,17 +2,30 @@ package pl.klimas7.spring.profiles;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class SpringConfig {
-    @Bean
+    @Bean(name = "message")
+    @Lazy
+    @Profile("test")
     public Message messageTest() {
         return new MessageImpl("SimpleBeanInTest");
     }
 
-    @Bean
+    @Bean(name = "message")
+    @Lazy
+    @Profile("dev")
     public Message message() {
         return new MessageImpl("SimpleBean");
+    }
+
+    @Bean(name = "message")
+    @Lazy
+    @Profile("default")
+    public Message messageDefault() {
+        return new MessageImpl("SimpleBeanInDefault");
     }
 
 
