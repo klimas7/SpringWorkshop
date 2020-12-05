@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
+//@Primary
 public class Excellent implements Rating {
     @Override
     public int getRating() {
