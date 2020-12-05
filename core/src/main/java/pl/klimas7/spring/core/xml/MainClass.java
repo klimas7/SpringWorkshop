@@ -37,7 +37,7 @@ public class MainClass {
         var helloWorldConstructor = context.getBean("helloWorldConstructor", HelloWorld.class);
         helloWorldConstructor.print();
 
-        log.info("//-----------------");
+        log.info("//Factory-----------------");
         var factory = context.getBean("factory", Factory.class);
         factory.doWork();
     }
