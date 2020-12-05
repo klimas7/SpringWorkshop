@@ -1,6 +1,7 @@
 package pl.klimas7.spring.profiles;
 
 import lombok.extern.java.Log;
+import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -14,7 +15,8 @@ public class MainClass {
     }
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext("pl.klimas7.spring.profiles");
+//        ApplicationContext ctx = new AnnotationConfigApplicationContext("pl.klimas7.spring.profiles");
+        ApplicationContext ctx = SpringApplication.run(AppConfiguration.class);
 
         Arrays.asList(ctx.getBeanDefinitionNames()).forEach(log::info);
         log.info("----------------");
