@@ -1,5 +1,12 @@
 package pl.klimas7.spring.core.circular;
 
-public class BeanA {
+import org.springframework.stereotype.Component;
 
+@Component
+public class BeanA {
+    private final BeanB beanB;
+
+    public BeanA(BeanB beanB) {
+        this.beanB = beanB;
+    }
 }
