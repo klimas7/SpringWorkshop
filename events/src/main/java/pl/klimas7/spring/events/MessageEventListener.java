@@ -10,5 +10,11 @@ public class MessageEventListener implements ApplicationListener<MessageEvent> {
     @Override
     public void onApplicationEvent(MessageEvent event) {
         log.info("Listen a message: " + event.getMessage() +" from source: " + event.getSource());
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage(), e);
+        }
+        log.info("After sleep in Listener");
     }
 }
