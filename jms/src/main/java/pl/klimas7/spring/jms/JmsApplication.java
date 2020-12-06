@@ -10,3 +10,7 @@ public class JmsApplication {
     }
 }
 
+/*
+https://youtu.be/0V9Ua538jMI?t=222
+ */
+
