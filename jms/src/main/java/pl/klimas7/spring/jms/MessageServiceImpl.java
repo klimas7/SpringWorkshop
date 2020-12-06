@@ -29,13 +29,13 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void sendMessageInfo(MessageInfo messageInfo) {
-        jmsOperations.convertAndSend(QueueName.OBJECT, messageInfo);
+        jmsOperations.convertAndSend(messageInfo);
 
     }
 
     @Override
     public MessageInfo getMessageInfo() {
-        return (MessageInfo) jmsOperations.receiveAndConvert(QueueName.OBJECT);
+        return (MessageInfo) jmsOperations.receiveAndConvert();
     }
 
     @Override
