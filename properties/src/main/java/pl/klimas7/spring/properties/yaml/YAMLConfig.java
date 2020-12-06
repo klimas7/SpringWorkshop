@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "config")
 public class YAMLConfig {
     private String name;
     private String environment;
