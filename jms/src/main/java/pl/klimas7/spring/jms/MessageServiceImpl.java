@@ -17,25 +17,25 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void sendMessage(String message) {
-        jmsOperations.send(QueueName.TEXT, session -> session.createTextMessage(message));
+        jmsOperations.convertAndSend(QueueName.TEXT, message);
     }
 
     @SneakyThrows
     @Override
     public String getMessage() {
         Message message = jmsOperations.receive(QueueName.TEXT);
-        return ((TextMessage)message).getText();
+        return ((TextMessage) message).getText();
     }
 
     @Override
     public void sendMessageInfo(MessageInfo messageInfo) {
-        jmsOperations.convertAndSend(messageInfo);
+        jmsOperations.convertAndSend(QueueName.OBJECT, messageInfo);
 
     }
 
     @Override
     public MessageInfo getMessageInfo() {
-        return (MessageInfo) jmsOperations.receiveAndConvert();
+        return (MessageInfo) jmsOperations.receiveAndConvert(QueueName.OBJECT);
     }
 
     @Override
