@@ -1,13 +1,43 @@
 package pl.klimas7.spring.jms;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
+@RestController
+@RequestMapping("/api")
 public class ApiController {
+    private final MessageService messageService;
+
+    public ApiController(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    @PostMapping("/text")
+    public void sendText(@RequestParam("text") String text) {
+        log.info("Send text: " + text);
+        messageService.sendMessage(text);
+    }
+
+    @PostMapping("/message")
+    public void sendMessage(@RequestBody MessageInfo messageInfo) {
+        log.info("Send message info: " + messageInfo);
+        messageService.sendMessageInfo(messageInfo);
+    }
+
+    @GetMapping("/text")
+    public String getText() {
+        log.info("Get text");
+        return messageService.getMessage();
+    }
+
+    @GetMapping("/message")
+    public MessageInfo getMessage() {
+        log.info("Get message info");
+        return messageService.getMessageInfo();
+    }
 }
 
 /*
