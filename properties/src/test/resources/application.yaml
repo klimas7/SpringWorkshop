@@ -1,0 +1,5 @@
+name: test-in-YAML
+environment: test
+servers:
+  - www.abc.testw.com
+  - www.xyz.testw.com
