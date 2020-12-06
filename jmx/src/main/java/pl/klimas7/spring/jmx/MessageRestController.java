@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class MessageRestController {
+    private final MessageManageOperation messageManageOperation;
+
+    public MessageRestController(MessageManageOperation messageManageOperation) {
+        this.messageManageOperation = messageManageOperation;
+    }
 
     @GetMapping("/message")
     public String message() {
-        return "Hello Sii people";
+        return messageManageOperation.getMessage();
     }
 
 }
