@@ -3,12 +3,14 @@ package pl.klimas7.spring.jmx;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jmx.export.MBeanExporter;
+import org.springframework.jmx.export.assembler.MethodNameBasedMBeanInfoAssembler;
 import org.springframework.jmx.support.ConnectorServerFactoryBean;
 import org.springframework.remoting.rmi.RmiRegistryFactoryBean;
 
 import javax.management.MalformedObjectNameException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @Configuration
 public class JmxConfiguration {
@@ -29,11 +31,27 @@ public class JmxConfiguration {
 //    }
 
     @Bean
-    public MBeanExporter mBeanExporter(MessageManageOperation messageManageOperation) {
+    public MethodNameBasedMBeanInfoAssembler assembler() {
+        MethodNameBasedMBeanInfoAssembler methodNameBasedMBeanInfoAssembler = new MethodNameBasedMBeanInfoAssembler();
+        // first solution
+        //methodNameBasedMBeanInfoAssembler.setManagedMethods("getMessage", "setMessage");
+
+        //second solution
+        Properties properties = new Properties();
+        properties.put("jmxApplication:name=MessageManageOperation", "getMessage,setMessage");
+
+        methodNameBasedMBeanInfoAssembler.setMethodMappings(properties);
+        return methodNameBasedMBeanInfoAssembler;
+    }
+
+    @Bean
+    public MBeanExporter mBeanExporter(MessageManageOperation messageManageOperation,
+                                       MethodNameBasedMBeanInfoAssembler assembler) {
         MBeanExporter mBeanExporter = new MBeanExporter();
         Map<String, Object> beans = new HashMap<>();
         beans.put("jmxApplication:name=MessageManageOperation", messageManageOperation);
         mBeanExporter.setBeans(beans);
+        mBeanExporter.setAssembler(assembler);
         return mBeanExporter;
     }
 
