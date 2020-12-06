@@ -26,9 +26,11 @@ import java.util.Map;
 })
 public class PropertiesComponent {
     private final Environment env;
+    private final Klimas7SpringProperty klimas7SpringProperty;
 
-    public PropertiesComponent(Environment env) {
+    public PropertiesComponent(Environment env, Klimas7SpringProperty klimas7SpringProperty) {
         this.env = env;
+        this.klimas7SpringProperty = klimas7SpringProperty;
     }
 
     @Value("test.p0")
@@ -87,6 +89,9 @@ public class PropertiesComponent {
 
         Arrays.stream(this.getClass().getDeclaredFields())
                 .forEach(this::printFieldValue);
+
+        log.info("-----------------------------");
+        klimas7SpringProperty.printProperties();
     }
 
     @SneakyThrows
