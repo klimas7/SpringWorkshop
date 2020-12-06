@@ -1,6 +1,7 @@
 package pl.klimas7.spring.jms;
 
 import lombok.SneakyThrows;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.jms.core.JmsOperations;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +41,6 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void sendTopic(String topic) {
-
+        jmsOperations.convertAndSend(new ActiveMQTopic(QueueName.TOPIC), topic);
     }
 }

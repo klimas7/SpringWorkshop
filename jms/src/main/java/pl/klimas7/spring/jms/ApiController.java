@@ -27,6 +27,12 @@ public class ApiController {
         messageService.sendMessageInfo(messageInfo);
     }
 
+    @PostMapping("/topic")
+    public void   sendTopic(@RequestParam("topic") String topic) {
+        log.info("Send topic info: " + topic);
+        messageService.sendTopic(topic);
+    }
+
     @GetMapping("/text")
     public String getText() {
         log.info("Get text");
