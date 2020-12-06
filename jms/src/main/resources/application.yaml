@@ -1,5 +1,5 @@
 spring:
   activemq:
-    broker-url: "tpc://ovh.klimas7.pl:61616"
+    broker-url: "tcp://ovh.klimas7.pl:61616"
     password: k7admin
     user: admin

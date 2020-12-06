@@ -1,17 +1,30 @@
 package pl.klimas7.spring.jms;
 
+import lombok.SneakyThrows;
+import org.springframework.jms.core.JmsOperations;
 import org.springframework.stereotype.Component;
+
+import javax.jms.Message;
+import javax.jms.TextMessage;
 
 @Component
 public class MessageServiceImpl implements MessageService {
-    @Override
-    public void sendMessage(String message) {
+    private final JmsOperations jmsOperations;
 
+    public MessageServiceImpl(JmsOperations jmsOperations) {
+        this.jmsOperations = jmsOperations;
     }
 
     @Override
+    public void sendMessage(String message) {
+        jmsOperations.send(QueueName.TEXT, session -> session.createTextMessage(message));
+    }
+
+    @SneakyThrows
+    @Override
     public String getMessage() {
-        return null;
+        Message message = jmsOperations.receive(QueueName.TEXT);
+        return ((TextMessage)message).getText();
     }
 
     @Override
