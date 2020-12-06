@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -71,6 +72,9 @@ public class PropertiesComponent {
     @Value("#{testProperty.property}")
     private String propertyFromClass;
     //StandardBeanExpressionResolver -> SpelExpression -> ... -> Indexer -> ReflectivePropertyAccessor:700
+
+    @Value("#{propertyGenerator.generate('${klimas7.spring.p6}')}")
+    private Map<String, String> p6;
 
     @PostConstruct
     private void printProperties() {
