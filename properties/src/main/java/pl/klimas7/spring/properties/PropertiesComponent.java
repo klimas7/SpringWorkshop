@@ -61,6 +61,10 @@ public class PropertiesComponent {
     @Value("#{systemProperties['user.name']}")
     private String userName;
 
+    @Value("#{testProperty['property']}")
+    private String propertyFromClass;
+    //StandardBeanExpressionResolver -> SpelExpression -> ... -> Indexer -> ReflectivePropertyAccessor:700
+
     @PostConstruct
     private void printProperties() {
         Arrays.stream(this.getClass().getDeclaredFields())
